@@ -4,11 +4,14 @@
   --color-violet-500: #8B5CF6;
   --color-violet-600: #7C3AED;
   --color-violet-700: #6D28D9;
+  --color-violet-800: #5B21B6;
   --color-violet-400: #A78BFA;
   --color-violet-300: #C4B5FD;
   --color-amber-500: #F59E0B;
   --color-amber-400: #FBBF24;
   --color-amber-300: #FCD34D;
+  --color-amber-600: #D97706;
+  --color-amber-800: #92400E;
   --color-glow-violet: #8B5CF6;
   --color-glow-amber: #F59E0B;
   --color-surface: #0F0F1A;
@@ -47,6 +50,10 @@ body {
   border-radius: 3px;
 }
 
+::-webkit-scrollbar-thumb:hover {
+  background: #A78BFA;
+}
+
 /* Glow effects */
 .glow-violet {
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
@@ -62,4 +69,38 @@ body {
 
 .text-glow-amber {
   text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+}
+
+/* Animated pulse glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(139, 92, 246, 0.2);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Neural grid background effect */
+@keyframes neural-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
+}
+
+/* Subtle noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
